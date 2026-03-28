@@ -6,11 +6,9 @@
 </head>
 
 <body>
-  <!-- Heading -->
   <h1>Login Form</h1>
 
-  <!-- Form -->
-  <form id="loginForm">
+  <form>
     <input type="text" id="username" placeholder="Username" />
     <br /><br />
 
@@ -24,12 +22,8 @@
     <input type="submit" id="submit" value="Submit" />
   </form>
 
-  <br />
-
-  <!-- Existing User Button (hidden initially) -->
-  <button id="existing" style="display: none;">
-    Login as existing user
-  </button>
+  <!-- IMPORTANT: no inline style -->
+  <button id="existing">Login as existing user</button>
 
   <script src="./script.js"></script>
 </body>

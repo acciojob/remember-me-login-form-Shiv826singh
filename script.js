@@ -1,17 +1,19 @@
-//your JS code here. If required.
 // Get elements
-const form = document.getElementById("loginForm");
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
+const form = document.querySelector("form");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
 const checkbox = document.getElementById("checkbox");
 const existingBtn = document.getElementById("existing");
 
-// Load stored credentials
-function checkStoredUser() {
-  const storedUsername = localStorage.getItem("username");
-  const storedPassword = localStorage.getItem("password");
+// Hide button initially using JS (IMPORTANT for Cypress)
+existingBtn.style.display = "none";
 
-  if (storedUsername && storedPassword) {
+// Check localStorage on load
+function checkUser() {
+  const storedUser = localStorage.getItem("username");
+  const storedPass = localStorage.getItem("password");
+
+  if (storedUser && storedPass) {
     existingBtn.style.display = "block";
   } else {
     existingBtn.style.display = "none";
@@ -22,32 +24,27 @@ function checkStoredUser() {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const username = usernameInput.value;
-  const password = passwordInput.value;
+  const user = username.value;
+  const pass = password.value;
 
-  alert(`Logged in as ${username}`);
+  alert(`Logged in as ${user}`);
 
   if (checkbox.checked) {
-    // Save credentials
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
+    localStorage.setItem("username", user);
+    localStorage.setItem("password", pass);
   } else {
-    // Remove credentials
     localStorage.removeItem("username");
     localStorage.removeItem("password");
   }
 
-  checkStoredUser();
+  checkUser();
 });
 
 // Existing user login
 existingBtn.addEventListener("click", function () {
-  const storedUsername = localStorage.getItem("username");
-
-  if (storedUsername) {
-    alert(`Logged in as ${storedUsername}`);
-  }
+  const storedUser = localStorage.getItem("username");
+  alert(`Logged in as ${storedUser}`);
 });
 
-// Run on page load
-checkStoredUser();
+// Run on load
+checkUser();
