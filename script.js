@@ -5,7 +5,7 @@ const password = document.getElementById("password");
 const checkbox = document.getElementById("checkbox");
 const existingBtn = document.getElementById("existing");
 
-// Hide button initially using JS (IMPORTANT for Cypress)
+// Hide button initially (important for Cypress)
 existingBtn.style.display = "none";
 
 // Check localStorage on load
@@ -27,6 +27,7 @@ form.addEventListener("submit", function (e) {
   const user = username.value;
   const pass = password.value;
 
+  // Alert (must match exactly)
   alert(`Logged in as ${user}`);
 
   if (checkbox.checked) {
@@ -46,5 +47,5 @@ existingBtn.addEventListener("click", function () {
   alert(`Logged in as ${storedUser}`);
 });
 
-// Run on load
+// Run on page load
 checkUser();
